@@ -1,95 +1,117 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client'
+import {Title, Main} from './page.ts';
+import React, { MouseEventHandler, useState} from 'react'
+import {LazyImage} from './components/RandomImage/RandomImage.tsx';
+import {ImageContainer, ButtonContainer, Button} from './components/RandomImage/RandomImage.ts';
+import {random} from 'lodash'
+import {IDuckImageItem} from '../types/IDuckImageItem.ts'
+import '../app/Styles/styles.css'
+import { GlobalStyles } from "./Styles/globalstyles"
+import Footer from './components/Footer/Footer.tsx'
+
+
+const myRandom = () => random(1, 250)
+const generateId = () => Math.random().toString(36).substr(2,9);
 
 export default function Home() {
+
+  const [images, setImages] = useState<Array<IDuckImageItem>>([]);
+
+  const addNewDuck: MouseEventHandler<HTMLButtonElement> = () => {
+
+    const newImageItem: IDuckImageItem = {
+      id: generateId (), 
+      url:`https://random-d.uk/api/v2/${myRandom()}.jpg`
+    };
+
+    setImages([...images, newImageItem])
+  }
+
+  /*const axios = require('axios');
+  axios.get({
+    url: 'https://api.api-ninjas.com/v1/quotes?category=happines',
+    headers: {
+      'X-Api-Key': '8oFMNe116xWU0MftsWFTpQ==qlI5L4PrrTrtXMiY'
+    }
+  })
+  
+    async function getUser() {
+    try {
+      const response = await axios.get({
+        url: 'https://api.api-ninjas.com/v1/quotes?category=happines',
+        headers: {
+          'X-Api-Key': '8oFMNe116xWU0MftsWFTpQ==qlI5L4PrrTrtXMiY'
+        }
+      })
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
+  }*/
+  /*const axios = require('request');
+  let category = 'happiness';
+  axios.get({
+    url: 'https://api.api-ninjas.com/v1/quotes?category=' + category,
+    headers: {
+      'X-Api-Key': '8oFMNe116xWU0MftsWFTpQ==qlI5L4PrrTrtXMiY'
+    },
+  }, function(error, response, body) {
+    if(error) return console.error('Request failed:', error);
+      else if(response.statusCode != 200) return console.error('Error:', response.statusCode, body.toString('utf8'));
+        else console.log(body)
+    });
+
+    useEffect(() => {
+      axios()
+    })*/
+
+    /*const axios = async () =>{
+      const axiosRequest = await axios.get('https://api.api-ninjas.com/v1/quotes?category=happiness')
+      console.log(axiosRequest)
+    }*/
+
+  //const categories = [happiness, faith, friendship, hope, inspirational]
+
+  /*const [quote, setQuote] = useState<string>('Hola');
+
+    useEffect(() => {
+      fetch (`https://api.api-ninjas.com/v1/quotes?category=happiness'`)
+      .then (res => res.json())
+      .then(
+        (quote) => {
+          console.log(quote)
+        }
+      )
+    },[])*/
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+    <Main >
+      <GlobalStyles/>
+     <Title>
+          <h1>Welcome to Random Quack.</h1>
+          <h2>Click and found out our fellas!</h2>
+      </Title>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+      <ImageContainer>
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+        <ButtonContainer>
+          <Button onClick={addNewDuck}>Agregar pato</Button>
+        </ButtonContainer>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
+          {images.map (({id, url}) =>
+            <div key={id}>
+              <LazyImage src={url}/>
+            </div> 
+          )}
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
+        </ImageContainer>
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+          <path fill="#318CE7" fillOpacity="1" d="M0,192L60,170.7C120,149,240,107,360,122.7C480,139,600,213,720,245.3C840,277,960,267,1080,256C1200,245,1320,235,1380,229.3L1440,224L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+        </svg>
+
+        <Footer/>
+
+    </Main>
   );
 }
