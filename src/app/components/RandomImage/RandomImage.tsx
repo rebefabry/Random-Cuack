@@ -28,5 +28,5 @@ export const LazyImage = ({src}: Props): JSX.Element => {
     }, [src])
 
 
-    return <img ref={node} src={currentSrc}/>
+    return <img ref={node} src={currentSrc} alt='Random Duck'/>
 }
