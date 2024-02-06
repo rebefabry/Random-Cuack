@@ -9,9 +9,9 @@ const Footer = () => {
           <p>© 2024 Random Cuack - Made by Rebeca Fabbricatore</p>
   
           <LogosContainer>
-            <GiPlasticDuck />
-            <GiPlasticDuck />
-            <GiPlasticDuck />
+            <GiPlasticDuck className='patito1'/>
+            <GiPlasticDuck className='patito2'/>
+            <GiPlasticDuck className='patito3'/>
           </LogosContainer>
       </FooterContainer>
     )

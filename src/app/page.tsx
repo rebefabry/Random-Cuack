@@ -88,7 +88,7 @@ export default function Home() {
     <Main >
       <GlobalStyles/>
      <Title>
-          <h1>Welcome to Random Quack.</h1>
+          <h1>Welcome to <span>Random</span> Quack.</h1>
           <h2>Click and found out our fellas!</h2>
       </Title>
 

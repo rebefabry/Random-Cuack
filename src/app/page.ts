@@ -5,6 +5,7 @@ export const Main = styled.main`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: auto;
 `
 
 export const Title = styled.div`
@@ -13,7 +14,8 @@ export const Title = styled.div`
   justify-content: center;
   align-items: center;
   gap: 15px;
-  margin: 10px;
+  margin: 15px;
+  text-align: center;
 
     h1 {
       font-size: 28px;
@@ -21,5 +23,9 @@ export const Title = styled.div`
 
     h2 {
       font-size: 20px;
+    }
+
+    span{
+      color: #318CE7;
     }
 `

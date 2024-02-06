@@ -8,19 +8,32 @@ export const FooterContainer = styles.footer`
     align-items: center;
     padding: 0 16px;
     background-color: #318CE7;
+    gap: 15px;
 
     p{
         text-align: center;
-        font-size: 18px;
+        font-size: 12px;
         color: white;
+        text-align: center;
     }
 `
 
 export const LogosContainer = styles.div`
     display: flex;
     gap: 20px;
-    font-size: 22px;
     text-align: center;
     cursor: pointer;
     color: white;
+
+    .patito3{
+        font-size: 30px;
+    }
+
+    .patito2{
+        font-size: 25px;
+    }
+
+    .patito1{
+        font-size: 20px;
+    }
 `
